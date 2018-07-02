@@ -10,7 +10,7 @@ class Admin extends Validate
     //验证规则
     protected $rule = [
         'username' => 'require|max:25',
-        'password' => 'require'
+        'password' => 'require',
     ];
 
     //验证错误提示
@@ -22,6 +22,6 @@ class Admin extends Validate
 
     //验证场景
     protected $scene = [
-        'add' => ['username','password'],
+        'add' => ['username'=>'require','password'],
     ];
 }
