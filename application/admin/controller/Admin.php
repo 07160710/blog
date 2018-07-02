@@ -11,11 +11,15 @@ namespace app\admin\controller;
 use think\Controller;
 use think\Db;
 use think\Loader;
+use app\admin\model\Admin as AdminModel;
 
 class Admin extends Controller
 {
     //列表页面
     public function lst(){
+        //模型引用
+        $list = AdminModel::paginate(3);
+        $this->assign('list',$list);
         return $this->fetch();
     }
     //添加页面
