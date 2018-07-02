@@ -10,6 +10,7 @@ namespace app\admin\controller;
 
 use think\Controller;
 use think\Db;
+use think\Loader;
 
 class Admin extends Controller
 {
@@ -24,6 +25,14 @@ class Admin extends Controller
                 'username' => input('post.username'),
                 'password' => md5(input('post.password')),
             ];
+
+            //验证数据
+            $validate = Loader::validate('Admin');
+            if(!$validate->scene('add')->check($data)){
+                $this->error($validate->getError());
+            }
+
+
             $res = Db::name('admin')->insert($data);
             if($res){
                 return $this->success('添加管理员成功！','lst');
