@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2018/7/1
- * Time: 20:42
+ * Admin控制器
  */
 
 namespace app\admin\controller;
@@ -47,6 +44,48 @@ class Admin extends Controller
         }
         return $this->fetch();
     }
+
+    //编辑管理员信息
+    public function edit(){
+        //获取id
+        $id = input('id');
+        $results = db('admin')->find($id);
+        if(request()->isPost()){
+            $data = [
+                'id' => input('post.id'),
+                'username' => input('post.username'),
+            ];
+
+            //有无传值密码的处理
+            if(input('post.password')){
+                $data['password'] = md5(input('post.password'));
+            }else{
+                $data['password'] = $results['password'];
+            }
+
+            //验证数据
+            $validate = Loader::validate('Admin');
+            if(!$validate->scene('edit')->check($data)){
+                $this->error($validate->getError());
+            }
+
+            $res = db('admin')->update($data);
+            if($res){
+                $this->success('修改管理员成功','lst');
+            }else{
+                $this->error('修改管理员失败');
+            }
+            //加return下面不再运行显示
+            return;
+        }
+
+
+
+        //dump($res);
+        $this->assign('res',$results);
+        return $this->fetch();
+    }
+
 
     //删除管理员模块
     public function del(){
