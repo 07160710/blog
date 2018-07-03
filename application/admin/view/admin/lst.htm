@@ -61,12 +61,14 @@
                             <td align="center">{$vo.id}</td>
                             <td align="center">{$vo.username}</td>
                             <td align="center">
-                                <a href="/admin/user/edit/id/6.html" class="btn btn-primary btn-sm shiny">
+                                <a href="{:url('admin/edit',array('id'=>$vo['id']))}" class="btn btn-primary btn-sm shiny">
                                     <i class="fa fa-edit"></i> 编辑
                                 </a>
-                                <a href="#" onClick="warning('确实要删除吗', '/admin/user/del/id/6.html')" class="btn btn-danger btn-sm shiny">
+                                {if condition="$vo['id'] neq 1"}
+                                <a href="#" onClick="warning('确实要删除吗', '{:url('admin/del',array('id'=>$vo['id']))}')" class="btn btn-danger btn-sm shiny">
                                     <i class="fa fa-trash-o"></i> 删除
                                 </a>
+                                {/if}
                             </td>
                         </tr>
                         {/volist}
@@ -75,7 +77,7 @@
                 </div>
                 <div>
                     <!--分页排布-->
-                    <div style="margin-top: 20px;">{$list->render()}</div>
+                    <div style="text-align: right;margin-top: 20px;">{$list->render()}</div>
                 </div>
             </div>
         </div>

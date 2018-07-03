@@ -48,5 +48,20 @@ class Admin extends Controller
         return $this->fetch();
     }
 
+    //删除管理员模块
+    public function del(){
+        $id = input('id');
+        if($id != 1){
+            $res = db('admin')->delete($id);
+            if($res){
+                $this->success('删除管理员成功','lst');
+            }else{
+                $this->error('删除管理员失败');
+            }
+        }else{
+            $this->error('初始化管理员不能删除');
+        }
+    }
+
 
 }
