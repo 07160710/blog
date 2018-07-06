@@ -53,19 +53,14 @@ class Links extends Controller
     public function edit(){
         //获取id
         $id = input('id');
-        $results = db('links')->find($id);
+        $links = db('links')->find($id);
         if(request()->isPost()){
             $data = [
                 'id' => input('post.id'),
-                'username' => input('post.username'),
+                'title' => input('post.title'),
+                'url' => input('post.url'),
+                'description' => input('post.description'),
             ];
-
-            //有无传值密码的处理
-            if(input('post.password')){
-                $data['password'] = md5(input('post.password'));
-            }else{
-                $data['password'] = $results['password'];
-            }
 
             //验证数据
             $validate = Loader::validate('Links');
@@ -83,10 +78,8 @@ class Links extends Controller
             return;
         }
 
-
-
         //dump($res);
-        $this->assign('res',$results);
+        $this->assign('links',$links);
         return $this->fetch();
     }
 
@@ -94,17 +87,11 @@ class Links extends Controller
     //删除链接模块
     public function del(){
         $id = input('id');
-        if($id != 1){
-            $res = db('Links')->delete($id);
-            if($res){
-                $this->success('删除链接成功','lst');
-            }else{
-                $this->error('删除链接失败');
-            }
+        $res = db('Links')->delete($id);
+        if($res){
+            $this->success('删除链接成功','lst');
         }else{
-            $this->error('初始化链接不能删除');
+            $this->error('删除链接失败');
         }
     }
-
-
 }
