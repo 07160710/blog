@@ -52,16 +52,8 @@ class Admin extends Controller
         $results = db('admin')->find($id);
         if(request()->isPost()){
             $data = [
-                'id' => input('post.id'),
                 'username' => input('post.username'),
             ];
-
-            //有无传值密码的处理
-            if(input('post.password')){
-                $data['password'] = md5(input('post.password'));
-            }else{
-                $data['password'] = $results['password'];
-            }
 
             //验证数据
             $validate = Loader::validate('Admin');
@@ -69,6 +61,15 @@ class Admin extends Controller
                 $this->error($validate->getError());
             }
 
+            $data['id'] = input('post.id');
+
+            //有无传值密码的处理
+            if(input('post.password')){
+                $data['password'] = md5(input('post.password'));
+            }else{
+                $data['password'] = $results['password'];
+            }
+            //dump($data);
             $res = db('admin')->update($data);
             if($res){
                 $this->success('修改管理员成功','lst');

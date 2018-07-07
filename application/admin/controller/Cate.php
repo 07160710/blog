@@ -50,16 +50,17 @@ class Cate extends Controller
         $results = db('cate')->find($id);
         if(request()->isPost()){
             $data = [
-                'id' => input('post.id'),
-                'catename' => input('post.catename'),
+                'catename' => input('catename'),
             ];
 
             //验证数据
             $validate = \think\Loader::validate('Cate');
             if(!$validate->scene('edit')->check($data)){
-                dump($data);
+                //dump($data);
                 $this->error($validate->getError());
             }
+
+            $data['id'] = input('post.id');
 
             $res = db('cate')->update($data);
             if($res !== false){

@@ -1,9 +1,15 @@
 <?php
-namespace app\admin\validate;
-use think\Validate;
 /**
- * Cate独立验证器
+ * Created by PhpStorm.
+ * User: Administrator
+ * Date: 2018/7/7
+ * Time: 16:31
  */
+
+namespace app\admin\validate;
+
+
+use think\Validate;
 
 class Cate extends Validate
 {
@@ -16,12 +22,12 @@ class Cate extends Validate
     protected $message = [
         'catename.require' => '栏目名称必须填写',
         'catename.max' => '栏目长度不得大于6',
-        'catename.unique:cate' => '栏目名称不能重复',
+        'catename.unique' => '栏目名称不能重复',
     ];
 
     //验证场景
     protected $scene = [
-        'all' => ['catename'=>'require|unique:cate'],
-        'edit' => ['catename'=>'require|unique:cate'],
+        'all' => ['catename'=>'require|max:6|unique:cate'],
+        'edit' => ['catename'=>'require|unique:cate']
     ];
 }
