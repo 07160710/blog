@@ -23,29 +23,27 @@ class Cate extends Controller
     public function add(){
         if(request()->isPost()){
             $data = [
-                'username' => input('post.username'),
-                'password' => md5(input('post.password')),
+                'catename' => input('post.catename'),
             ];
 
             //验证数据
             $validate = Loader::validate('Cate');
-            if(!$validate->scene('add')->check($data)){
+            if(!$validate->scene('all')->check($data)){
                 $this->error($validate->getError());
             }
 
-
             $res = Db::name('cate')->insert($data);
             if($res){
-                return $this->success('添加管理员成功！','lst');
+                return $this->success('添加栏目成功！','lst');
             }else{
-                return $this->error('添加管理员失败');
+                return $this->error('添加栏目失败');
             }
             return;
         }
         return $this->fetch();
     }
 
-    //编辑管理员信息
+    //编辑栏目信息
     public function edit(){
         //获取id
         $id = input('id');
@@ -53,33 +51,25 @@ class Cate extends Controller
         if(request()->isPost()){
             $data = [
                 'id' => input('post.id'),
-                'username' => input('post.username'),
+                'catename' => input('post.catename'),
             ];
 
-            //有无传值密码的处理
-            if(input('post.password')){
-                $data['password'] = md5(input('post.password'));
-            }else{
-                $data['password'] = $results['password'];
-            }
-
             //验证数据
-            $validate = Loader::validate('Cate');
+            $validate = \think\Loader::validate('Cate');
             if(!$validate->scene('edit')->check($data)){
+                dump($data);
                 $this->error($validate->getError());
             }
 
             $res = db('cate')->update($data);
-            if($res){
-                $this->success('修改管理员成功','lst');
+            if($res !== false){
+                $this->success('修改栏目成功','lst');
             }else{
-                $this->error('修改管理员失败');
+                $this->error('修改栏目失败');
             }
             //加return下面不再运行显示
             return;
         }
-
-
 
         //dump($res);
         $this->assign('res',$results);
@@ -87,20 +77,14 @@ class Cate extends Controller
     }
 
 
-    //删除管理员模块
+    //删除栏目模块
     public function del(){
         $id = input('id');
-        if($id != 1){
-            $res = db('cate')->delete($id);
-            if($res){
-                $this->success('删除管理员成功','lst');
-            }else{
-                $this->error('删除管理员失败');
-            }
+        $res = db('cate')->delete($id);
+        if($res){
+            $this->success('删除栏目成功','lst');
         }else{
-            $this->error('初始化管理员不能删除');
+            $this->error('删除栏目失败');
         }
     }
-
-
 }
