@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>链接列表</title>
+    <title>文章列表</title>
 
     <meta name="description" content="Dashboard">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,10 +52,11 @@
                         <thead class="">
                             <tr>
                                 <th class="text-center" width="4%">ID</th>
-                                <th class="text-center" width="10%">文章名称</th>
-                                <th class="text-center" width="28%">文章地址</th>
-                                <th class="text-center">文章描述</th>
-                                <th class="text-center" width="24%">操作</th>
+                                <th class="text-center">文章标题</th>
+                                <th class="text-center">文章作者</th>
+                                <th class="text-center">是否推荐</th>
+                                <th class="text-center">缩略图</th>
+                                <th class="text-center" width="14%">操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -63,13 +64,20 @@
                         <tr>
                             <td align="center">{$vo.id}</td>
                             <td align="center">{$vo.title}</td>
-                            <td align="center"><a href="{$vo.url}" target="_blank">{$vo.url}</a></td>
+                            <td align="center">{$vo.author}</td>
                             <td align="center">
-                            {if condition="$vo['description'] neq ''"}
-                                {$vo.description}
+                            {if condition="$vo['state'] eq 1"}
+                                已推荐
                             {else /}
-                                暂无描述
+                                未推荐
                             {/if}
+                            </td>
+                            <td align="center">
+                                 {if condition="$vo['pic'] neq '' "}
+                                    <img src="__IMG__{$vo.pic}" height="50">
+                                 {else /}
+                                    暂无缩略图
+                                 {/if}
                             </td>
                             <td align="center">
                                 <a href="{:url('article/edit',array('id'=>$vo['id']))}" class="btn btn-primary btn-sm shiny">
