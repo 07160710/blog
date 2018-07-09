@@ -46,6 +46,9 @@ class Article extends Controller
             }
             return;
         }
+        //显示栏目
+        $caters = db('cate')->select();
+        $this->assign('caters',$caters);
         return $this->fetch();
     }
 
