@@ -56,6 +56,7 @@
                                 <th class="text-center">文章作者</th>
                                 <th class="text-center">是否推荐</th>
                                 <th class="text-center">缩略图</th>
+                                <th class="text-center">所属栏目</th>
                                 <th class="text-center" width="14%">操作</th>
                             </tr>
                         </thead>
@@ -79,6 +80,8 @@
                                     暂无缩略图
                                  {/if}
                             </td>
+                            <!--关联表输出写法不同-->
+                            <td align="center">{$vo.cate.catename}</td>
                             <td align="center">
                                 <a href="{:url('article/edit',array('id'=>$vo['id']))}" class="btn btn-primary btn-sm shiny">
                                     <i class="fa fa-edit"></i> 编辑

@@ -11,4 +11,9 @@ use think\Model;
 
 class Article extends Model
 {
+    //多篇文章属于一个栏目
+    public function cate()
+    {
+        return $this->belongsTo('cate','cateid');
+    }
 }

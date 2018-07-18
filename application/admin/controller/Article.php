@@ -18,6 +18,11 @@ class Article extends Controller
     //列表页面
     public function lst(){
         //模型引用
+        //$list = ArticleModel::paginate(3);
+        //链接查询
+        //$list = db('article')->alias('a')->join('cate c','c.id=a.cateid')->field('a.id,a.title,a.pic,a.author,a.state,c.catename')->paginate(3);
+        //var_dump($list);
+        //关联查询
         $list = ArticleModel::paginate(3);
         $this->assign('list',$list);
         return $this->fetch();
