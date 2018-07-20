@@ -74,7 +74,7 @@ class Article extends Controller
     public function edit(){
         //获取id
         $id = input('id');
-        $links = db('article')->find($id);
+        $articles = db('article')->find($id);
         if(request()->isPost()){
             $data = [
                 'id' => input('post.id'),
@@ -98,9 +98,10 @@ class Article extends Controller
             //加return下面不再运行显示
             return;
         }
-
+        $caters = db('cate')->select();
+        $this->assign('caters',$caters);
         //dump($res);
-        $this->assign('links',$links);
+        $this->assign('article',$articles);
         return $this->fetch();
     }
 
