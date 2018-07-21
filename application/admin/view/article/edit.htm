@@ -58,6 +58,7 @@
                                 <div id="horizontal-form">
                                     <!--上传图片时form表单要加enctype="multipart/form-data"-->
                                     <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" value="{$article.id}" name="id" />
                                         <div class="form-group">
                                             <label for="title" class="col-sm-2 control-label no-padding-right">文章标题</label>
                                             <div class="col-sm-6">

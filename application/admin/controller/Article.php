@@ -79,9 +79,23 @@ class Article extends Controller
             $data = [
                 'id' => input('post.id'),
                 'title' => input('post.title'),
-                'url' => input('post.url'),
-                'description' => input('post.description'),
+                'author' => input('post.author'),
+                'desc' => input('post.desc'),
+                'keywords' => input('post.keywords'),
+                'content' => input('post.content'),
+                'cateid' => input('post.cateid'),
             ];
+            if(input('post.state') == 'on'){
+                $data['state'] = 1;
+            }
+            //判断是否有文件上传
+            if($_FILES['pic']['tmp_name']){
+                $pics = SITE_URL.'/public/static'.$articles['pic'];
+                @unlink($pics);
+                $file = request()->file('pic');
+                $info = $file->move(ROOT_PATH.'public'.DS.'static/uploads');
+                $data['pic'] = '/uploads/'.$info->getSaveName();
+            }
 
             //验证数据
             $validate = Loader::validate('Article');
