@@ -71,7 +71,7 @@ class Admin extends Controller
             }
             //dump($data);
             $res = db('admin')->update($data);
-            if($res){
+            if($res !== false){
                 $this->success('修改管理员成功','lst');
             }else{
                 $this->error('修改管理员失败');

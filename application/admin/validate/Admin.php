@@ -24,6 +24,6 @@ class Admin extends Validate
     //验证场景
     protected $scene = [
         'add' => ['username'=>'require|unique:admin','password'],
-        'edit' => ['username'=>'require|unique:admin'],
+        'edit' => ['username'=>'require'],
     ];
 }

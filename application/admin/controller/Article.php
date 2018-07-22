@@ -42,6 +42,8 @@ class Article extends Controller
 
             if(input('post.state') == 'on'){
                 $data['state'] = 1;
+            }else{
+                $data['state'] = 0;
             }
             //判断是否有文件上传
             if($_FILES['pic']['tmp_name']){
@@ -87,6 +89,8 @@ class Article extends Controller
             ];
             if(input('post.state') == 'on'){
                 $data['state'] = 1;
+            }else{
+                $data['state'] = 0;
             }
             //判断是否有文件上传
             if($_FILES['pic']['tmp_name']){
