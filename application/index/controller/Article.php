@@ -7,9 +7,8 @@
  */
 
 namespace app\index\controller;
-use think\Controller;
 
-class Article extends Controller
+class Article extends Base
 {
     //article主页显示
     public function index(){
