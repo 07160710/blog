@@ -103,5 +103,13 @@ class Admin extends Controller
         }
     }
 
+    //退出登录
+
+    public function logout()
+    {
+        session(null);
+        $this->success('退出成功','login/login');
+    }
+
 
 }

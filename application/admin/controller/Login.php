@@ -19,12 +19,12 @@ class Login extends Controller
         if(request()->isPost()){
             $data = input('post.');
             $admin = new Admin();
-            if($admin->isLogin($data) == 1){
+            if($admin->isLogin($data) == 3){
+                return $this->success('登录成功','index/index');
+            }elseif($admin->isLogin($data) == 4){
+                return $this->error('验证码错误');
+            }else{
                 return $this->error('用户名或者密码错误');
-            }elseif($admin->isLogin($data) == 2){
-                return $this->error('用户名或者密码错误');
-            }elseif($admin->isLogin($data) == 3){
-                return $this->success('登录成功');
             }
         }
         return $this->fetch();

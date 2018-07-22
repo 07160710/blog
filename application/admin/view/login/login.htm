@@ -22,12 +22,20 @@
         <form action="{:url('login/login')}" method="post">
             <div class="loginbox bg-white">
                 <div class="loginbox-title">登录</div>
+
                 <div class="loginbox-textbox">
                     <input value="admin" class="form-control" placeholder="username" name="username" type="text">
                 </div>
+
                 <div class="loginbox-textbox">
                     <input class="form-control" placeholder="password" name="password" type="password">
                 </div>
+
+                <div class="loginbox-textbox">
+                    <input class="form-control" placeholder="验证码" name="code" type="text" style="width: 80px;float: left;">
+                    <img src="{:captcha_src()}" style="float: left; cursor: pointer; margin-left: 9px" alt="yzm" onclick="this.src='{:captcha_src()}?'+Math.random();"/>
+                </div>
+
                 <div class="loginbox-submit">
                     <input class="btn btn-primary btn-block" value="Login" type="submit">
                 </div>

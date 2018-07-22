@@ -236,4 +236,14 @@ return [
         'var_page'  => 'page',
         'list_rows' => 15,
     ],
+
+    'captcha' => [
+        'codeSet' => '2345678abcdefhijkmnpqrstuvwxyzABCDEFGHJKLMNPQRTUVWXY',
+        'fontSize' => 14,
+        'useCurve' => true,
+        'imageH' => 30,
+        'imageW' => 130,
+        'length' => 4,
+        'reset' => true
+    ]
 ];
