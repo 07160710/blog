@@ -5,12 +5,11 @@
 
 namespace app\admin\controller;
 
-use think\Controller;
 use think\Db;
 use think\Loader;
 use app\admin\model\Admin as AdminModel;
 
-class Admin extends Controller
+class Admin extends Base
 {
     //列表页面
     public function lst(){

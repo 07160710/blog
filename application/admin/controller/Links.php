@@ -8,12 +8,11 @@
 
 namespace app\admin\controller;
 
-use think\Controller;
 use think\Db;
 use think\Loader;
 use app\admin\model\Links as LinksModel;
 
-class Links extends Controller
+class Links extends Base
 {
     //列表页面
     public function lst(){

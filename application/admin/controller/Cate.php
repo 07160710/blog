@@ -5,12 +5,11 @@
 
 namespace app\admin\controller;
 
-use think\Controller;
 use think\Db;
 use think\Loader;
 use app\admin\model\Cate as CateModel;
 
-class Cate extends Controller
+class Cate extends Base
 {
     //列表页面
     public function lst(){

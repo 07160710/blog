@@ -8,12 +8,11 @@
 
 namespace app\admin\controller;
 
-use think\Controller;
 use think\Db;
 use think\Loader;
 use app\admin\model\Article as ArticleModel;
 
-class Article extends Controller
+class Article extends Base
 {
     //列表页面
     public function lst(){
